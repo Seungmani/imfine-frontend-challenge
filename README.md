@@ -81,7 +81,7 @@ project/
 
 1. 저장소 클론
 ```bash
-   git clone https://github.com/yourusername/imfine-frontend-task.git
+   git clone https://github.com/Seungmani/imfine-frontend-task.git
    cd imfine-frontend-task
 ```
 2. 웹 브라우저에서 열기
