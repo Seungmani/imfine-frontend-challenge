@@ -7,15 +7,12 @@
 }
 
 html {
-	font-size: 62.5%; /*1rem을 10px로 변환*/
+	font-size: 62.5%;
+	/*1rem을 10px로 변환*/
 }
 
 button {
-	background: none;
-	color: inherit;
-	border: none;
 	cursor: pointer;
-	outline: inherit
 }
 
 a {
@@ -29,4 +26,157 @@ li {
 
 input:focus {
 	outline: none;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+.container {
+	width: 100%;
+	max-width: 1440px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.header {
+	text-align: right;
+	margin: 20px 0;
+}
+
+/* 모든 섹션 공통 스타일 */
+section {
+	margin: 30px auto;
+	width: 100%;
+}
+
+section h2 {
+	margin-bottom: 20px;
+}
+
+/* 모바일 (기본) */
+.chart-section {
+	width: 100%;
+	max-width: 450px;
+}
+
+.edit-section,
+.json-edit-section {
+	width: 100%;
+	max-width: 450px;
+}
+
+/* 차트 컨테이너 스타일 */
+.chart-container {
+	width: 100%;
+	height: 300px;
+	margin: 0 auto;
+	font-family: Arial, sans-serif;
+}
+
+/* 태블릿 */
+@media (min-width: 768px) {
+	.chart-section {
+		max-width: 700px;
+	}
+
+	.edit-section,
+	.json-edit-section {
+		max-width: 700px;
+	}
+
+	.chart-container {
+		height: 350px;
+	}
+}
+
+/* 데스크탑 (1280px) */
+@media (min-width: 1280px) {
+	.chart-section {
+		max-width: 900px;
+	}
+
+	.edit-section,
+	.json-edit-section {
+		max-width: 900px;
+	}
+
+	.chart-container {
+		height: 400px;
+	}
+}
+
+/* 와이드 스크린 (1440px 이상) */
+@media (min-width: 1440px) {
+	.chart-section {
+		max-width: 1200px;
+	}
+
+	.edit-section,
+	.json-edit-section {
+		max-width: 1200px;
+	}
+
+	.chart-container {
+		height: 500px;
+	}
+}
+
+/* SVG는 컨테이너에 맞게 크기 조정 */
+.chart-container svg {
+	width: 100%;
+	height: 100%;
+}
+
+.bar {
+	fill: #4285f4;
+	transition: fill 0.3s;
+}
+
+.bar:hover {
+	fill: #3367d6;
+}
+
+.x-axis {
+	font-size: 12px;
+}
+
+.y-axis {
+	font-size: 12px;
+}
+
+.axis-label {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+
+.bar {
+	fill: #4285f4;
+	transition: fill 0.3s;
+}
+
+.bar:hover {
+	fill: #3367d6;
+}
+
+.x-axis {
+	font-size: 12px;
+}
+
+.y-axis {
+	font-size: 12px;
+}
+
+.axis-label {
+	font-size: 14px;
+	font-weight: bold;
 }

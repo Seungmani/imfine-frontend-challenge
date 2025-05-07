@@ -1,20 +1,179 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>IMfine - 사전 과제</title>
-</head>
-<body>
-	<div class="container">
-		<header class="header">아이엠파인 SD 팀 지원자 이승민</header>
-		<main>
-			<section class="chart-section" id="chart-container"></section>
-			<section class="edit-section" id="edit-table-container"></section>
-			<section class="edit-section" id="data-add-container"></section>
-			<section class="json-edit-section" id="json-editor-container"></section>
-		</main>
-	</div>
-	<script type="module" src="src/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IMfine - 사전 과제</title>
+
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+				<h1>아이엠파인 SD 팀 지원자 이승민</h1>
+			</header>
+      <main>
+        <section class="chart-section" id="chart-container" aria-label="데이터 시각화 막대 그래프">
+          <h2>1. 그래프</h2>
+          <svg width="500" height="400" viewBox="0 0 500 400" role="img">
+            <!-- 그래프 영역 정의 -->
+            <g transform="translate(40, 20)">
+              <!-- Y축 -->
+              <line
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="320"
+                stroke="#333"
+                stroke-width="2"
+								aria-hidden="true"
+              ></line>
+
+              <!-- X축 -->
+              <line
+                x1="0"
+                y1="320"
+                x2="420"
+                y2="320"
+                stroke="#333"
+                stroke-width="2"
+								aria-hidden="true"
+              ></line>
+
+              <!-- 가장 큰 값만 Y축에 표시 -->
+              <text x="-5" y="10" text-anchor="end" class="y-axis">100</text>
+
+              <!-- X축 라벨 (ID 값) -->
+              <text x="30" y="340" text-anchor="middle" class="x-axis">0</text>
+              <text x="110" y="340" text-anchor="middle" class="x-axis">1</text>
+              <text x="190" y="340" text-anchor="middle" class="x-axis">2</text>
+              <text x="270" y="340" text-anchor="middle" class="x-axis">3</text>
+              <text x="350" y="340" text-anchor="middle" class="x-axis">4</text>
+
+              <!-- 축 레이블 -->
+              <text x="210" y="370" text-anchor="middle" class="axis-label">
+                ID
+              </text>
+              <text
+                x="-30"
+                y="160"
+                text-anchor="middle"
+                transform="rotate(-90, -30, 160)"
+                class="axis-label"
+              >
+                Value
+              </text>
+
+              <!-- 막대 그래프 -->
+              <!-- id: 0, value: 75 -->
+              <rect x="10" y="95" width="40" height="225" class="bar" aria-label="ID 0의 값: 75"></rect>
+
+              <!-- id: 1, value: 20 -->
+              <rect x="90" y="260" width="40" height="60" class="bar" aria-label="ID 0의 값: 20"></rect>
+
+              <!-- id: 2, value: 80 -->
+              <rect x="170" y="80" width="40" height="240" class="bar" aria-label="ID 0의 값: 80"></rect>
+
+              <!-- id: 3, value: 100 -->
+              <rect x="250" y="20" width="40" height="300" class="bar" aria-label="ID 0의 값: 100"></rect>
+
+              <!-- id: 4, value: 70 -->
+              <rect x="330" y="110" width="40" height="210" class="bar" aria-label="ID 0의 값: 70"></rect>
+
+              <!-- 각 막대의 값 표시 -->
+              <text x="30" y="85" text-anchor="middle">75</text>
+              <text x="110" y="250" text-anchor="middle">20</text>
+              <text x="190" y="70" text-anchor="middle">80</text>
+              <text x="270" y="10" text-anchor="middle">100</text>
+              <text x="350" y="100" text-anchor="middle">70</text>
+            </g>
+          </svg>
+        </section>
+        <section class="edit-section" id="edit-table-container">
+          <h2>2. 값 편집</h2>
+          <table id="data-table">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td><input type="number" value="75" class="value-input" tabindex="0" aria-label="ID 0의 값"></td>
+                <td><button class="delete-btn" data-id="0" tabindex="0" aria-label="ID 0의 값 삭제">삭제</button></td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td><input type="number" value="20" class="value-input" tabindex="0" aria-label="ID 1의 값"></td>
+                <td><button class="delete-btn" data-id="1" tabindex="0" aria-label="ID 1의 값 삭제">삭제</button></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><input type="number" value="80" class="value-input" tabindex="0" aria-label="ID 2의 값"></td>
+                <td><button class="delete-btn" data-id="2" tabindex="0" aria-label="ID 2의 값 삭제">삭제</button></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><input type="number" value="100" class="value-input" tabindex="0" aria-label="ID 3의 값"></td>
+                <td><button class="delete-btn" data-id="3" tabindex="0" aria-label="ID 3의 값 삭제">삭제</button></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><input type="number" value="70" class="value-input" tabindex="0" aria-label="ID 4의 값"></td>
+                <td><button class="delete-btn" data-id="4" tabindex="0" aria-label="ID 4의 값 삭제">삭제</button></td>
+              </tr>
+            </tbody>
+          </table>
+					<button id="table-apply-btn" tabindex="0">Apply</button>
+        </section>
+        <section class="edit-section" id="data-add-container">
+          <h2>3. 값 추가</h2>
+          <div class="input-container">
+            <div class="input-group">
+              <label for="id-input">ID:</label>
+              <input type="number" id="id-input" min="0" tabindex="0" aria-required="true"/>
+            </div>
+            <div class="input-group">
+              <label for="value-input">Value:</label>
+              <input type="number" id="value-input" min="0" tabindex="0" aria-required="true"/>
+            </div>
+            <button id="add-btn" tabindex="0">Add</button>
+          </div>
+        </section>
+        <section role="form" class="json-edit-section" id="json-editor-container">
+          <h2>4. 값 고급 편집</h2>
+          <textarea id="json-editor" rows="10" tabindex="0" aria-describedby="json-help">
+[
+  {
+    id: 0,
+    value: 75,
+  },
+  {
+    id: 1,
+    value: 20,
+  },
+  {
+    id: 2,
+    value: 80,
+  },
+  {
+    id: 3,
+    value: 100,
+  },
+  {
+    id: 4,
+    value: 70,
+  },
+]
+			</textarea>
+			<p id="json-help" class="sr-only">JSON 형식으로 데이터를 직접 편집할 수 있습니다. 형식은 배열 내 객체여야 합니다.</p>
+          <button id="json-apply-btn" tabindex="0">Apply</button>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="src/main.js"></script>
+  </body>
 </html>
