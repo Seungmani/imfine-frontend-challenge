@@ -31,6 +31,7 @@
 - Vanilla JavaScript (ES6+)
 
 ## 📁 폴더 구조
+``` text
 project/
 ├── src/
 │   ├── components/    # UI 컴포넌트
@@ -49,6 +50,7 @@ project/
 ├── index.html         # HTML 엔트리 포인트
 ├── index.css          # 스타일시트
 └── README.md          # 프로젝트 전체 문서
+```
 
 ## 🔍 주요 설계 결정
 
@@ -78,7 +80,7 @@ project/
 ## 💻 실행 방법
 
 1. 저장소 클론
-   ```bash
+```bash
    git clone https://github.com/yourusername/imfine-frontend-task.git
    cd imfine-frontend-task
 ```
