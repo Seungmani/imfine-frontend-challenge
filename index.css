@@ -1,3 +1,13 @@
+:root {
+	--color-semi-gray: #333;
+	--color-gray: #444;
+	--color-white: #fff;
+	--color-white-gray: #f2f2f2;
+	--color-red: red;
+	--color-border: #ddd;
+	--color-axis-text: #666;
+}
+
 *,
 *::before,
 *::after {
@@ -7,21 +17,11 @@
 }
 
 html {
-	font-size: 62.5%;
-	/*1rem을 10px로 변환*/
+	font-size: 62.5%; /*1rem을 10px로 변환*/
 }
 
-button {
-	cursor: pointer;
-}
-
-a {
-	color: inherit;
-	text-decoration: none;
-}
-
-li {
-	list-style: none;
+body {
+	min-width: 375px;
 }
 
 input:focus {
@@ -41,142 +41,143 @@ input:focus {
 }
 
 .container {
-	width: 100%;
 	max-width: 1440px;
 	margin: 0 auto;
-	padding: 0 15px;
+	padding: 20px;
 }
 
+/* 헤더 스타일 */
 .header {
-	text-align: right;
-	margin: 20px 0;
-}
-
-/* 모든 섹션 공통 스타일 */
-section {
-	margin: 30px auto;
 	width: 100%;
+	margin-bottom: 30px;
 }
 
-section h2 {
+h1 {
+	font-size: 2rem;
+	text-align: right;
+}
+
+/* 섹션 공통 스타일 */
+section {
+	margin-bottom: 40px;
+}
+
+h2 {
 	margin-bottom: 20px;
 }
 
-/* 모바일 (기본) */
+/* 그래프 섹션 */
 .chart-section {
-	width: 100%;
-	max-width: 450px;
+	overflow-x: auto;
 }
 
-.edit-section,
-.json-edit-section {
-	width: 100%;
-	max-width: 450px;
-}
-
-/* 차트 컨테이너 스타일 */
-.chart-container {
-	width: 100%;
-	height: 300px;
+svg {
+	display: block;
 	margin: 0 auto;
-	font-family: Arial, sans-serif;
 }
 
-/* 태블릿 */
-@media (min-width: 768px) {
-	.chart-section {
-		max-width: 700px;
-	}
-
-	.edit-section,
-	.json-edit-section {
-		max-width: 700px;
-	}
-
-	.chart-container {
-		height: 350px;
-	}
+.bar {
+	fill: gray;
 }
 
-/* 데스크탑 (1280px) */
-@media (min-width: 1280px) {
-	.chart-section {
-		max-width: 900px;
-	}
-
-	.edit-section,
-	.json-edit-section {
-		max-width: 900px;
-	}
-
-	.chart-container {
-		height: 400px;
-	}
-}
-
-/* 와이드 스크린 (1440px 이상) */
-@media (min-width: 1440px) {
-	.chart-section {
-		max-width: 1200px;
-	}
-
-	.edit-section,
-	.json-edit-section {
-		max-width: 1200px;
-	}
-
-	.chart-container {
-		height: 500px;
-	}
-}
-
-/* SVG는 컨테이너에 맞게 크기 조정 */
-.chart-container svg {
+/* 테이블 스타일 */
+table {
 	width: 100%;
-	height: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
 }
 
-.bar {
-	fill: #4285f4;
-	transition: fill 0.3s;
+th, td {
+	padding: 10px;
+	text-align: center;
+	border-bottom: 1px solid var(--color-border);
 }
 
-.bar:hover {
-	fill: #3367d6;
-}
-
-.x-axis {
-	font-size: 12px;
-}
-
-.y-axis {
-	font-size: 12px;
-}
-
-.axis-label {
-	font-size: 14px;
+th {
+	background: var(--color-white-gray);
+	text-align: center;
+	font-size: 1.5rem;
 	font-weight: bold;
 }
 
-
-.bar {
-	fill: #4285f4;
-	transition: fill 0.3s;
+/* 입력 필드 스타일 */
+input[type="number"] {
+	width: 100%;
+	padding: 8px;
+	border: 1px solid var(--color-border);
+	border-radius: 4px;
+	cursor: pointer;
 }
 
-.bar:hover {
-	fill: #3367d6;
-}
-
-.x-axis {
-	font-size: 12px;
-}
-
-.y-axis {
-	font-size: 12px;
-}
-
-.axis-label {
+/* 버튼 스타일 */
+button {
+	padding: 8px 15px;
+	cursor: pointer;
 	font-size: 14px;
-	font-weight: bold;
+}
+
+/* 삭제 버튼 스타일 */
+.delete-btn {
+	background: none;
+	color: var(--color-red);
+	border: none;
+	font-size: 1.4rem;
+	cursor: pointer;
+}
+
+.delete-btn:hover {
+	text-decoration: underline;
+	background: none;
+}
+
+/* Apply 버튼과 Add 버튼 */
+#table-apply-btn,
+#json-apply-btn,
+#add-btn {
+	text-align: center;
+}
+
+/* 입력 그룹 스타일 */
+.input-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	align-items: center;
+}
+
+.input-group {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+/* JSON 에디터 스타일 */
+#json-editor {
+	width: 100%;
+	height: 500px;
+	margin-bottom: 10px;
+	padding: 12px;
+	resize: vertical;
+}
+
+@media screen and (max-width: 375px) {
+  .input-container,
+	.input-group {
+    flex-direction: column;
+		align-items: start;
+  }
+	#json-editor {
+		height: 300px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.input-container,
+  .input-group {
+    flex-direction: row;
+		align-items: center;
+  }
+	#json-editor {
+		height: 300px;
+	}
 }
