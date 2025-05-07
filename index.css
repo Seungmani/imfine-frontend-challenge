@@ -1,3 +1,13 @@
+:root {
+	--color-semi-gray: #333;
+	--color-gray: #444;
+	--color-white: #fff;
+	--color-white-gray: #f2f2f2;
+	--color-red: red;
+	--color-border: #ddd;
+	--color-axis-text: #666;
+}
+
 *,
 *::before,
 *::after {
@@ -10,23 +20,164 @@ html {
 	font-size: 62.5%; /*1rem을 10px로 변환*/
 }
 
-button {
-	background: none;
-	color: inherit;
-	border: none;
-	cursor: pointer;
-	outline: inherit
-}
-
-a {
-	color: inherit;
-	text-decoration: none;
-}
-
-li {
-	list-style: none;
+body {
+	min-width: 375px;
 }
 
 input:focus {
 	outline: none;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+.container {
+	max-width: 1440px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+/* 헤더 스타일 */
+.header {
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+h1 {
+	font-size: 2rem;
+	text-align: right;
+}
+
+/* 섹션 공통 스타일 */
+section {
+	margin-bottom: 40px;
+}
+
+h2 {
+	margin-bottom: 20px;
+}
+
+/* 그래프 섹션 */
+.chart-section {
+	overflow-x: auto;
+}
+
+svg {
+	display: block;
+	margin: 0 auto;
+}
+
+.bar {
+	fill: gray;
+}
+
+/* 테이블 스타일 */
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+th, td {
+	padding: 10px;
+	text-align: center;
+	border-bottom: 1px solid var(--color-border);
+}
+
+th {
+	background: var(--color-white-gray);
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+/* 입력 필드 스타일 */
+input[type="number"] {
+	width: 100%;
+	padding: 8px;
+	border: 1px solid var(--color-border);
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+/* 버튼 스타일 */
+button {
+	padding: 8px 15px;
+	cursor: pointer;
+	font-size: 14px;
+}
+
+/* 삭제 버튼 스타일 */
+.delete-btn {
+	background: none;
+	color: var(--color-red);
+	border: none;
+	font-size: 1.4rem;
+	cursor: pointer;
+}
+
+.delete-btn:hover {
+	text-decoration: underline;
+	background: none;
+}
+
+/* Apply 버튼과 Add 버튼 */
+#table-apply-btn,
+#json-apply-btn,
+#add-btn {
+	text-align: center;
+}
+
+/* 입력 그룹 스타일 */
+.input-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	align-items: center;
+}
+
+.input-group {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+/* JSON 에디터 스타일 */
+#json-editor {
+	width: 100%;
+	height: 500px;
+	margin-bottom: 10px;
+	padding: 12px;
+	resize: vertical;
+}
+
+@media screen and (max-width: 375px) {
+  .input-container,
+	.input-group {
+    flex-direction: column;
+		align-items: start;
+  }
+	#json-editor {
+		height: 300px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.input-container,
+  .input-group {
+    flex-direction: row;
+		align-items: center;
+  }
+	#json-editor {
+		height: 300px;
+	}
 }
