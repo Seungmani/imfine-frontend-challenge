@@ -100,6 +100,11 @@ th {
 	font-weight: bold;
 }
 
+tr.marked-for-deletion {
+  background-color: rgba(244, 67, 54, 0.1);
+  text-decoration: line-through;
+}
+
 /* 입력 필드 스타일 */
 input[type="number"] {
 	width: 100%;
