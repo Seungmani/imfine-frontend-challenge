@@ -1,4 +1,4 @@
-export default class TableEditor {
+class TableEditor {
 	constructor(container, dataManager) {
 		this.container = document.querySelector(container);
 		this.dataManager = dataManager;
@@ -77,3 +77,5 @@ export default class TableEditor {
     errorElement.style.display = 'none';
   }
 }
+
+window.TableEditor = TableEditor;
