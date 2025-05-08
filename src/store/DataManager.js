@@ -47,6 +47,7 @@ class DataManager {
   // 데이터 변경 알림
   notifyListeners() {
 		console.log("변경", this.data)
+    this.data.sort((a, b) => a.id - b.id)
     this.listeners.forEach(listener => listener(this.data));
   }
 }

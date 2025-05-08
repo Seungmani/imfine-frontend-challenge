@@ -135,7 +135,7 @@
         </section>
         <section class="edit-section">
           <h2>3. 값 추가</h2>
-          <div class="input-container" aria-describedby="input-help">
+          <div class="input-container" id="add-data-form" aria-describedby="input-help">
             <div class="input-group">
               <input
                 type="number"
@@ -155,8 +155,9 @@
               />
             </div>
 						<p id="input-help" class="sr-only">
-							ID, VALUE를 추가할 수 있습니다. 두 값은 정수를 입력 받습니다. 작업을 완료한 후에는 버튼을 눌러주세요.
+							ID, VALUE를 추가할 수 있습니다. 두 값은 0보다 큰 정수를 입력 받습니다. 작업을 완료한 후에는 버튼을 눌러주세요.
 						</p>
+            <div id="add-error" class="error-message"></div>
             <button id="add-btn" tabindex="0" aria-label="데이터를 추가합니다.">Add</button>
           </div>
         </section>
@@ -205,6 +206,7 @@
     </div>
   </body>
   <script src="src/store/DataManager.js"></script>
+  <script src="src/component/AddFrom.js"></script>
   <script src="src/component/TableEditor.js"></script>
   <script src="src/main.js"></script>
 </html>

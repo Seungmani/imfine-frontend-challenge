@@ -23,5 +23,6 @@ const initData = [
 
 document.addEventListener("DOMContentLoaded", () => {
   window.dataManager.setData(initData);
-  const tableEditor = new window.TableEditor('#data-table', dataManager);
+  new window.TableEditor('#data-table', dataManager);
+  new window.AddForm('#add-data-form', dataManager);
 });
