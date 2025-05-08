@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko-KR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -124,119 +124,10 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>0</td>
-                <td>
-                  <input
-                    type="number"
-                    value="75"
-                    class="value-input"
-                    tabindex="0"
-                    aria-label="ID 0의 값"
-                  />
-                </td>
-                <td>
-                  <button
-                    class="delete-btn"
-                    data-id="0"
-                    tabindex="0"
-                    aria-label="ID 0의 값 삭제"
-                  >
-                    삭제
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>
-                  <input
-                    type="number"
-                    value="20"
-                    class="value-input"
-                    tabindex="0"
-                    aria-label="ID 1의 값"
-                  />
-                </td>
-                <td>
-                  <button
-                    class="delete-btn"
-                    data-id="1"
-                    tabindex="0"
-                    aria-label="ID 1의 값 삭제"
-                  >
-                    삭제
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>
-                  <input
-                    type="number"
-                    value="80"
-                    class="value-input"
-                    tabindex="0"
-                    aria-label="ID 2의 값"
-                  />
-                </td>
-                <td>
-                  <button
-                    class="delete-btn"
-                    data-id="2"
-                    tabindex="0"
-                    aria-label="ID 2의 값 삭제"
-                  >
-                    삭제
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>
-                  <input
-                    type="number"
-                    value="100"
-                    class="value-input"
-                    tabindex="0"
-                    aria-label="ID 3의 값"
-                  />
-                </td>
-                <td>
-                  <button
-                    class="delete-btn"
-                    data-id="3"
-                    tabindex="0"
-                    aria-label="ID 3의 값 삭제"
-                  >
-                    삭제
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>
-                  <input
-                    type="number"
-                    value="70"
-                    class="value-input"
-                    tabindex="0"
-                    aria-label="ID 4의 값"
-                  />
-                </td>
-                <td>
-                  <button
-                    class="delete-btn"
-                    data-id="4"
-                    tabindex="0"
-                    aria-label="ID 4의 값 삭제"
-                  >
-                    삭제
-                  </button>
-                </td>
-              </tr>
+            <tbody id="table-body">
             </tbody>
           </table>
+          <div id="table-error" class="error-message"></div>
 					<p id="table-help" class="sr-only">
             데이터를 테이블 형태로 보여줍니다. Value를 편집할 수 있고, 삭제 할 수 있습니다. 작업을 완료한 후에는 아래 버튼을 눌러주세요.
           </p>
@@ -312,6 +203,6 @@
         </section>
       </main>
     </div>
-    <script type="module" src="src/main.js"></script>
   </body>
+  <script src="src/main.js"></script>
 </html>

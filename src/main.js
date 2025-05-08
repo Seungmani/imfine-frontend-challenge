@@ -1,3 +1,6 @@
+import TableEditor from './components/TableEditor.js';
+import dataManager from './utils/DataManager.js';
+
 const initData = [
   {
     id: 0,
@@ -22,5 +25,6 @@ const initData = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-
+  dataManager.setData(initData);
+  const tableEditor = new TableEditor('#data-table', dataManager);
 });
