@@ -100,6 +100,27 @@ th {
 	font-weight: bold;
 }
 
+/* 첫 번째 열 (id) */
+th:nth-child(1),
+td:nth-child(1) {
+  width: 20%;
+  min-width: 50px;
+}
+
+/* 두 번째 열 (value) */
+th:nth-child(2),
+td:nth-child(2) {
+  width: 50%;
+  min-width: 125px;
+}
+
+/* 세 번째 열 (삭제 버튼) */
+th:nth-child(3),
+td:nth-child(3) {
+  width: 30%;
+  min-width: 75px;
+}
+
 tr.marked-for-deletion {
   background-color: rgba(244, 67, 54, 0.1);
   text-decoration: line-through;
@@ -115,10 +136,10 @@ input[type="number"] {
 }
 
 /* 버튼 스타일 */
-button {
+button:not(.delete-btn) {
 	padding: 8px 15px;
 	cursor: pointer;
-	font-size: 14px;
+	font-size: 1.4rem;
 }
 
 /* 삭제 버튼 스타일 */
@@ -127,7 +148,13 @@ button {
 	color: var(--color-red);
 	border: none;
 	font-size: 1.4rem;
+	width: 80px; 
+  display: inline-block;
 	cursor: pointer;
+}
+
+.delete-btn.marked {
+  color: #000;
 }
 
 .delete-btn:hover {

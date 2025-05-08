@@ -116,11 +116,11 @@
         </section>
         <section class="edit-section" aria-label="데이터 테이블 섹션">
           <h2>2. 값 편집</h2>
-          <table id="data-table" aria-describedby="table-help">
+          <table id="data-table"  aria-describedby="table-help">
             <thead>
               <tr>
-                <th>id</th>
-                <th>value</th>
+                <th class="sortable" data-sort="id">id<span class="sort-icon">↓</span></th>
+                <th class="sortable" data-sort="value">value<span class="sort-icon"></span></th>
                 <th></th>
               </tr>
             </thead>
@@ -194,7 +194,7 @@
     value: 70,
   },
 ]
-					</textarea
+					</textarea 
           >
           <p id="json-help" class="sr-only">
             JSON 형식으로 데이터를 직접 편집할 수 있습니다. 형식은 배열 내 객체여야 합니다. 작업을 완료한 후에는 아래 버튼을 눌러주세요.
