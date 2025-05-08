@@ -192,6 +192,11 @@ button:not(.delete-btn) {
 	resize: vertical;
 }
 
+.error-message {
+	color: var(--color-red);
+	font-size: 2rem;
+}
+
 @media screen and (max-width: 375px) {
   .input-container,
 	.input-group {

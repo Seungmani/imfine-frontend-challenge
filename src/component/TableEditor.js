@@ -52,6 +52,7 @@ class TableEditor {
       if (this.sortOrder === 'asc') return valueA < valueB ? -1 : valueA > valueB ? 1 : 0;
       else return valueA < valueB ? 1 : valueA > valueB ? -1 : 0;
     });
+
     this.#update(sortedData);
   }
 
@@ -64,7 +65,7 @@ class TableEditor {
     data.forEach(item => {
       const tr = document.createElement('tr');
       tr.dataset.id = item.id;
-      
+      console.log("item", item.id, item.value)
       tr.innerHTML = `
         <td>${item.id}</td>
         <td><input type="number" value="${item.value}" class="value-input" tabindex="0"
@@ -108,6 +109,11 @@ class TableEditor {
       // 유효성 검사
       if (isNaN(value)) {
         this.#showError('값은 숫자여야 합니다.');
+        return;
+      }
+
+      if (value < 0) {
+        this.#showError('음수는 Value로 저장할 수 없습니다.');
         return;
       }
       
