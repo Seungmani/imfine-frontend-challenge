@@ -273,8 +273,8 @@ class JsonEditor {
         let errorMsg = `JSON 구문 오류: ${parseError.message}`;
         
         if (lineNumber) {
-          errorMsg += `\n문제 발생 위치: ${lineNumber - 2}번째 줄`;
-          this.highlightLine(lineNumber - 2);
+          errorMsg += `\n문제 발생 위치: ${lineNumber - 1}번째 줄`;
+          this.highlightLine(lineNumber - 1);
         }
         
         throw new Error(errorMsg);
