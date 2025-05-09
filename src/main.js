@@ -25,4 +25,5 @@ document.addEventListener("DOMContentLoaded", () => {
   window.dataManager.setData(initData);
   new window.TableEditor('#data-table', dataManager);
   new window.AddForm('#add-data-form', dataManager);
+  new window.JsonEditor('#json-editor-container', dataManager);
 });

@@ -183,18 +183,53 @@ button:not(.delete-btn) {
 	gap: 10px;
 }
 
-/* JSON 에디터 스타일 */
-#json-editor {
-	width: 100%;
-	height: 500px;
-	margin-bottom: 10px;
-	padding: 12px;
-	resize: vertical;
-}
-
 .error-message {
 	color: var(--color-red);
 	font-size: 2rem;
+}
+
+/* JSON 에디터 컨테이너 스타일 */
+.json-edit-section {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* JSON 에디터 스타일 */
+#json-editor {
+  width: 100%;
+  min-height: 250px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  tab-size: 2;
+  -moz-tab-size: 2;
+  resize: vertical;
+  white-space: pre;
+  overflow-x: auto;
+  box-sizing: border-box;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+input[type="number"]:focus,
+#json-editor:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+/* 에러 발생 줄 스타일 */
+#json-editor.error-line {
+  border-color: #ff3333;
+  box-shadow: 0 0 5px rgba(255, 51, 51, 0.5);
+}
+
+/* 선택된 텍스트(에러 줄) 스타일 */
+#json-editor::selection {
+  background-color: rgba(255, 0, 0, 0.2);
+  color: #000;
 }
 
 @media screen and (max-width: 375px) {
