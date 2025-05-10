@@ -16,7 +16,43 @@ class JsonEditor {
     // Tab 키 처리를 위한 이벤트 리스너 추가
     jsonEditor.addEventListener('keydown', this.handleTabKey.bind(this));
     
+    // 초기화 버튼 추가
+    this.addResetButton();
+    
     this.update(this.dataManager.getData());
+  }
+
+  // 초기화 버튼 추가
+  addResetButton() {
+    // 기존 버튼 옆에 초기화 버튼 추가
+    const applyBtn = document.getElementById('json-apply-btn');
+    const resetBtn = document.createElement('button');
+    resetBtn.id = 'json-reset-btn';
+    resetBtn.textContent = 'Reset';
+    resetBtn.setAttribute('aria-label', '원래 데이터로 초기화');
+    resetBtn.style.marginLeft = '10px';
+    
+    // 버튼 스타일링 - 원래 버튼과 동일하되 다른 색상 사용
+    resetBtn.style.padding = '8px 15px';
+    resetBtn.style.cursor = 'pointer';
+    resetBtn.style.fontSize = '1.6rem';
+    resetBtn.style.background = '#607D8B'; // 다른 색상 사용
+    resetBtn.style.color = '#fff';
+    resetBtn.style.border = 'none';
+    resetBtn.style.borderRadius = '4px';
+    resetBtn.style.transition = 'background 0.2s';
+    
+    applyBtn.parentNode.insertBefore(resetBtn, applyBtn.nextSibling);
+    
+    // 초기화 버튼 이벤트 리스너 추가
+    resetBtn.addEventListener('click', this.resetJson.bind(this));
+  }
+
+  // 초기화 기능 - 원래 데이터로 되돌림
+  resetJson() {
+    const originalData = this.dataManager.getData();
+    this.update(originalData);
+    this.hideError();
   }
 
   // Tab 키 처리
@@ -163,6 +199,94 @@ class JsonEditor {
     return null;
   }
 
+  // 개선된 객체 속성 줄 번호 찾기 함수
+  findPropertyLine(jsonText, objectId, propertyName) {
+    const lines = jsonText.split('\n');
+    let inTargetObject = false;
+    let bracketDepth = 0;
+    
+    // 먼저 해당 객체의 시작점 찾기
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      
+      // 객체의 시작점 식별 - ID로 식별
+      if (!inTargetObject && line.includes(`"id"`) && line.includes(`${objectId}`)) {
+        const idMatch = line.match(/"id"\s*:\s*(\d+)/);
+        if (idMatch && idMatch[1] == objectId) {
+          inTargetObject = true;
+          bracketDepth = 0;
+          continue;  // 다음 줄부터 검색 시작
+        }
+      }
+      
+      // 타겟 객체 안에서 속성 찾기
+      if (inTargetObject) {
+        // 중괄호 깊이 추적
+        if (line.includes('{')) bracketDepth++;
+        if (line.includes('}')) bracketDepth--;
+        
+        // 객체가 끝났으면 검색 종료
+        if (bracketDepth < 0) break;
+        
+        // 속성 찾기 - 정확히 해당 속성명만 찾도록
+        const propertyRegex = new RegExp(`"${propertyName}"\\s*:`, 'i');
+        if (propertyRegex.test(line)) {
+          return i + 1;  // 1-based 줄 번호 반환
+        }
+        
+        // 속성명은 없지만 잘못된 속성명이 있는 경우 (예: npt 대신 value 찾을 때)
+        if (propertyName === 'value' && !line.includes('"value"') && line.includes(':')) {
+          // id나 다른 유효한 속성이 아니고, 콜론이 있는 줄
+          const invalidPropMatch = line.match(/"([^"]+)"\s*:/);
+          if (invalidPropMatch && invalidPropMatch[1] !== 'id') {
+            return i + 1;  // 잘못된 속성명이 있는 줄 번호 반환
+          }
+        }
+      }
+    }
+    
+    return null;  // 속성 찾지 못함
+  }
+
+  // 추가 속성 줄 번호 찾기 - 허용되지 않은 추가 속성을 찾음
+  findExtraPropertyLine(jsonText, objectId, extraPropName) {
+    const lines = jsonText.split('\n');
+    let inTargetObject = false;
+    let bracketDepth = 0;
+    
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      
+      // 객체의 시작점 식별
+      if (!inTargetObject && line.includes(`"id"`) && line.includes(`${objectId}`)) {
+        const idMatch = line.match(/"id"\s*:\s*(\d+)/);
+        if (idMatch && idMatch[1] == objectId) {
+          inTargetObject = true;
+          continue;
+        }
+      }
+      
+      // 타겟 객체 안에서 속성 찾기
+      if (inTargetObject) {
+        // 중괄호 깊이 추적
+        if (line.includes('{')) bracketDepth++;
+        if (line.includes('}')) {
+          bracketDepth--;
+          // 객체가 끝났으면 검색 종료
+          if (bracketDepth < 0) break;
+        }
+        
+        // 추가 속성 찾기
+        const extraPropRegex = new RegExp(`"${extraPropName}"\\s*:`, 'i');
+        if (extraPropRegex.test(line)) {
+          return i + 1;  // 추가 속성이 있는 줄 번호 반환
+        }
+      }
+    }
+    
+    return null;
+  }
+
   // 사용자 정의 유효성 검사 오류에서 줄 번호 찾기
   findLineNumberForObject(jsonText, targetProperty, targetValue) {
     const lines = jsonText.split('\n');
@@ -299,9 +423,43 @@ class JsonEditor {
           throw new Error(errorMsg);
         }
         
-        if (!('id' in item) || !('value' in item)) {
-          const errorMsg = `항목 #${itemPosition}에 필수 속성(id, value)이 누락되었습니다.${itemLineNum ? ' (약 ' + itemLineNum + '번째 줄)' : ''}`;
-          if (itemLineNum) this.highlightLine(itemLineNum);
+        // id 속성 검증
+        if (!('id' in item)) {
+          // id 속성이 없는 경우, 오브젝트의 시작 줄을 찾음
+          let objectStartLine = null;
+          const lines = jsonInput.split('\n');
+          
+          // 객체의 시작 줄 찾기
+          for (let i = 0; i < lines.length; i++) {
+            if (lines[i].includes('{') && 
+                (i+1 < lines.length && !lines[i+1].includes('"id"'))) {
+              objectStartLine = i + 1;
+              const nextLine = i + 2; // 다음 속성을 가리킴
+              if (nextLine < lines.length) {
+                objectStartLine = nextLine;
+              }
+              break;
+            }
+          }
+          
+          const errorMsg = `항목 #${itemPosition}에 id 속성이 없습니다.${objectStartLine ? ' (약 ' + objectStartLine + '번째 줄)' : ''}`;
+          if (objectStartLine) this.highlightLine(objectStartLine);
+          throw new Error(errorMsg);
+        }
+        
+        // value 속성 검증
+        if (!('value' in item)) {
+          // value 속성 누락 - 정확한 줄 찾기
+          // 먼저 객체에서 다른 속성을 찾아보고 그 줄을 하이라이트
+          const propertyLine = this.findPropertyLine(jsonInput, item.id, "npt"); // npt 같은 잘못된 속성 찾기
+          
+          const errorMsg = `항목 #${itemPosition}에 value 속성이 없습니다.${propertyLine ? ' (약 ' + propertyLine + '번째 줄)' : ''}`;
+          if (propertyLine) {
+            this.highlightLine(propertyLine);
+          } else if (itemLineNum) {
+            // 못 찾았으면 객체 시작점을 하이라이트
+            this.highlightLine(itemLineNum);
+          }
           throw new Error(errorMsg);
         }
         
@@ -322,24 +480,18 @@ class JsonEditor {
         
         // value가 숫자가 아닐 때
         if (typeof item.value !== 'number') {
-          // 문자열로 된 숫자인 경우 강조하고, 아닌 경우 해당 객체의 라인을 찾아서 강조
-          let lineNum;
-          if (typeof item.value === 'string') {
-            // 먼저 정확한 값 매칭 시도
-            lineNum = this.findLineNumberForObject(jsonInput, 'value', item.value);
-            
-            if (!lineNum) {
-              // ID로 객체 위치 찾기 시도
-              lineNum = this.findLineNumberForObject(jsonInput, 'id', item.id);
-            }
-          } else {
-            // 문자열이 아닌 경우 ID로 객체 위치 찾기
-            lineNum = this.findLineNumberForObject(jsonInput, 'id', item.id);
-          }
+          // 정확한 value 속성 라인 찾기
+          const lineNum = this.findLineNumberForObject(jsonInput, 'value', item.value);
           
           const errorMsg = `항목 #${itemPosition}의 value는 숫자여야 합니다.${lineNum ? ' (약 ' + lineNum + '번째 줄)' : ''}`;
           if (lineNum) {
             this.highlightLine(lineNum);
+          } else {
+            // value 속성을 정확히 찾지 못하면 객체에서 value 속성이 있는 줄 찾기
+            const valueLine = this.findPropertyLine(jsonInput, item.id, "value");
+            if (valueLine) {
+              this.highlightLine(valueLine);
+            }
           }
           throw new Error(errorMsg);
         }
@@ -356,8 +508,20 @@ class JsonEditor {
         const validKeys = ['id', 'value'];
         const extraKeys = Object.keys(item).filter(key => !validKeys.includes(key));
         if (extraKeys.length > 0) {
-          const errorMsg = `항목 #${item.id || itemPosition}에 허용되지 않은 속성이 있습니다: ${extraKeys.join(', ')}${itemLineNum ? ' (약 ' + itemLineNum + '번째 줄)' : ''}`;
-          if (itemLineNum) this.highlightLine(itemLineNum);
+          // 추가 속성의 정확한 줄 찾기
+          let extraPropertyLine = null;
+          for (const extraKey of extraKeys) {
+            extraPropertyLine = this.findExtraPropertyLine(jsonInput, item.id, extraKey);
+            if (extraPropertyLine) break;
+          }
+          
+          const errorMsg = `항목 #${item.id || itemPosition}에 허용되지 않은 속성이 있습니다: ${extraKeys.join(', ')}${extraPropertyLine ? ' (약 ' + extraPropertyLine + '번째 줄)' : ''}`;
+          if (extraPropertyLine) {
+            this.highlightLine(extraPropertyLine);
+          } else if (itemLineNum) {
+            // 못 찾았으면 객체 시작점을 하이라이트
+            this.highlightLine(itemLineNum);
+          }
           throw new Error(errorMsg);
         }
       });
