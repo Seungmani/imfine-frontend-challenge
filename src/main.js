@@ -1,10 +1,4 @@
-const initData = 
-
-
-
-
-
-[
+const initData = [
   { id: 0, value: 37 },
   { id: 1, value: 99 },
   { id: 2, value: 4 },

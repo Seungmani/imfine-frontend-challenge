@@ -28,7 +28,7 @@ body {
 }
 
 input:focus,
-button:focus,
+button:not(.delete-btn):focus,
 .sortable:focus {
   outline: 2px solid #4CAF50;
   outline-offset: 2px;
@@ -143,18 +143,17 @@ button:not(.delete-btn) {
   padding: 8px 15px;
   cursor: pointer;
   font-size: 1.6rem;
-  background: #388E3C; /* #4CAF50 → #388E3C, 대비 5.5:1 */
+  background: #388E3C;
   color: #fff;
   border: none;
   border-radius: 4px;
   transition: background 0.2s;
 }
 
-/* 명시적 chart-nav-btn 스타일 추가 */
 .chart-nav-btn {
-  padding: 5px 15px; /* 인라인 스타일 유지 */
+  padding: 5px 15px; 
   font-size: 1.6rem;
-  background: #388E3C; /* 대비 5.5:1 */
+  background: #388E3C;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -163,13 +162,13 @@ button:not(.delete-btn) {
 }
 
 .chart-nav-btn:disabled {
-  background: #B0BEC5; /* 비활성화 상태, 대비 4.5:1 이상 */
+  background: #B0BEC5;
   color: #fff;
   cursor: not-allowed;
 }
 
 .chart-nav-btn:hover:not(:disabled) {
-  background: #2E7D32; /* 호버 상태, 대비 7.0:1 */
+  background: #2E7D32;
 }
 
 .delete-btn {
