@@ -1,28 +1,75 @@
-const initData = [
-  {
-    id: 0,
-    value: 75,
-  },
-  {
-    id: 1,
-    value: 20,
-  },
-  {
-    id: 2,
-    value: 80,
-  },
-  {
-    id: 3,
-    value: 100,
-  },
-  {
-    id: 4,
-    value: 70,
-  },
-];
+const initData = 
+
+
+
+
+
+[
+  { id: 0, value: 37 },
+  { id: 1, value: 99 },
+  { id: 2, value: 4 },
+  { id: 3, value: 64 },
+  { id: 4, value: 73 },
+  { id: 5, value: 64 },
+  { id: 6, value: 91 },
+  { id: 7, value: 65 },
+  { id: 8, value: 4 },
+  { id: 9, value: 2 },
+  { id: 10, value: 5 },
+  { id: 11, value: 89 },
+  { id: 12, value: 94 },
+  { id: 13, value: 3 },
+  { id: 14, value: 15 },
+  { id: 15, value: 56 },
+  { id: 16, value: 66 },
+  { id: 17, value: 10 },
+  { id: 18, value: 39 },
+  { id: 19, value: 63 },
+  { id: 20, value: 14 },
+  { id: 21, value: 26 },
+  { id: 22, value: 79 },
+  { id: 23, value: 9 },
+  { id: 24, value: 35 },
+  { id: 25, value: 31 },
+  { id: 26, value: 77 },
+  { id: 27, value: 43 },
+  { id: 28, value: 58 },
+  { id: 29, value: 28 },
+  { id: 30, value: 88 },
+  { id: 31, value: 10 },
+  { id: 32, value: 64 },
+  { id: 33, value: 43 },
+  { id: 34, value: 8 },
+  { id: 35, value: 63 },
+  { id: 36, value: 23 },
+  { id: 37, value: 42 },
+  { id: 38, value: 50 },
+  { id: 39, value: 51 },
+  { id: 40, value: 63 },
+  { id: 41, value: 47 },
+  { id: 42, value: 42 },
+  { id: 43, value: 14 },
+  { id: 44, value: 63 },
+  { id: 45, value: 53 },
+  { id: 46, value: 36 },
+  { id: 47, value: 71 },
+  { id: 48, value: 82 },
+  { id: 49, value: 19 },
+  { id: 50, value: 39 },
+  { id: 51, value: 66 },
+  { id: 52, value: 95 },
+  { id: 53, value: 17 },
+  { id: 54, value: 86 },
+  { id: 55, value: 32 },
+  { id: 56, value: 16 },
+  { id: 57, value: 8 },
+  { id: 58, value: 23 },
+  { id: 59, value: 53 }
+]
 
 document.addEventListener("DOMContentLoaded", () => {
   window.dataManager.setData(initData);
+  new window.Chart('.chart-section', dataManager);
   new window.TableEditor('#data-table', dataManager);
   new window.AddForm('#add-data-form', dataManager);
   new window.JsonEditor('#json-editor-container', dataManager);

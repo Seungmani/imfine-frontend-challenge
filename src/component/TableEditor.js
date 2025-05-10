@@ -65,7 +65,6 @@ class TableEditor {
     data.forEach(item => {
       const tr = document.createElement('tr');
       tr.dataset.id = item.id;
-      console.log("item", item.id, item.value)
       tr.innerHTML = `
         <td>${item.id}</td>
         <td><input type="number" value="${item.value}" class="value-input" tabindex="0"
