@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="아이엠파인 SD 팀 지원자 이승민의 데이터 시각화 및 편집 애플리케이션. 테이블, 차트, JSON 편집 기능 제공.">
+    <meta
+      name="description"
+      content="아이엠파인 SD 팀 지원자 이승민의 데이터 시각화 및 편집 애플리케이션. 테이블, 차트, JSON 편집 기능 제공."
+    />
     <title>IMfine - 사전 과제</title>
 
     <link rel="stylesheet" href="./index.css" />
@@ -78,38 +81,44 @@
               받습니다. 작업을 완료한 후에는 버튼을 눌러주세요.
             </p>
             <div id="add-error" class="error-message"></div>
-            <button id="add-btn" type="submit"  tabindex="0" aria-label="데이터 추가">
+            <button
+              id="add-btn"
+              type="submit"
+              tabindex="0"
+              aria-label="데이터 추가"
+            >
               Add
             </button>
           </form>
         </section>
         <section class="json-edit-section" id="json-editor-container">
-        <h2>4. 값 고급 편집</h2>
-        <label for="json-editor" class="sr-only">JSON 데이터 편집</label>
-        <textarea
-          id="json-editor"
-          rows="10"
-          spellcheck="false"
-          aria-describedby="json-help"
-          data-enable-tab="true"
-        ></textarea>
-        <p id="json-help" class="sr-only">
-          JSON 형식으로 데이터를 직접 편집할 수 있습니다. 형식은 배열 내
-          객체여야 합니다. Tab 키를 사용해서 들여쓰기를 할 수 있습니다. 작업을 완료한 후에는 아래 버튼을 눌러주세요.
-        </p>
-        <div
-          class="error-message"
-          id="json-error"
-          style="display: none"
-        ></div>
-        <button
-          id="json-apply-btn"
-          tabindex="0"
-          aria-label="수정한 JSON 적용"
-        >
-          Apply
-        </button>
-      </section>
+          <h2>4. 값 고급 편집</h2>
+          <label for="json-editor" class="sr-only">JSON 데이터 편집</label>
+          <textarea
+            id="json-editor"
+            rows="10"
+            spellcheck="false"
+            aria-describedby="json-help"
+            data-enable-tab="true"
+          ></textarea>
+          <p id="json-help" class="sr-only">
+            JSON 형식으로 데이터를 직접 편집할 수 있습니다. 형식은 배열 내
+            객체여야 합니다. Tab 키를 사용해서 들여쓰기를 할 수 있습니다. 작업을
+            완료한 후에는 아래 버튼을 눌러주세요.
+          </p>
+          <div
+            class="error-message"
+            id="json-error"
+            style="display: none"
+          ></div>
+          <button
+            id="json-apply-btn"
+            tabindex="0"
+            aria-label="수정한 JSON 적용"
+          >
+            Apply
+          </button>
+        </section>
       </main>
     </div>
   </body>

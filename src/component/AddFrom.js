@@ -8,7 +8,6 @@ class AddForm {
   #init() {
     document.getElementById('add-btn').addEventListener('click', this.#addItem.bind(this));
 		document.getElementById('id-input').value = this.dataManager.getData().at(-1).id + 1;
-    console.log("addForm init")
   }
   
   #addItem() {
