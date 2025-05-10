@@ -15,104 +15,6 @@
       <main>
         <section class="chart-section" aria-label="데이터 시각화 막대 그래프">
           <h2>1. 그래프</h2>
-          <svg width="500" height="400" viewBox="0 0 500 400" role="img">
-            <!-- 그래프 영역 정의 -->
-            <g transform="translate(40, 20)">
-              <!-- Y축 -->
-              <line
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="320"
-                stroke="#333"
-                stroke-width="2"
-              ></line>
-              <!-- X축 -->
-              <line
-                x1="0"
-                y1="320"
-                x2="420"
-                y2="320"
-                stroke="#333"
-                stroke-width="2"
-              ></line>
-
-              <!-- 가장 큰 값만 Y축에 표시 -->
-              <text x="-5" y="10" text-anchor="end" class="y-axis">100</text>
-
-              <!-- X축 라벨 (ID 값) -->
-              <text x="30" y="340" text-anchor="middle" class="x-axis">0</text>
-              <text x="110" y="340" text-anchor="middle" class="x-axis">1</text>
-              <text x="190" y="340" text-anchor="middle" class="x-axis">2</text>
-              <text x="270" y="340" text-anchor="middle" class="x-axis">3</text>
-              <text x="350" y="340" text-anchor="middle" class="x-axis">4</text>
-
-              <!-- 축 레이블 -->
-              <text x="210" y="370" text-anchor="middle" class="axis-label">
-                ID
-              </text>
-              <text
-                x="-30"
-                y="160"
-                text-anchor="middle"
-                transform="rotate(-90, -30, 160)"
-                class="axis-label"
-              >
-                Value
-              </text>
-
-              <!-- 막대 그래프 -->
-              <!-- id: 0, value: 75 -->
-              <rect
-                x="10"
-                y="95"
-                width="40"
-                height="225"
-                class="bar"
-                aria-label="ID 0의 값: 75"
-              ></rect>
-
-              <!-- id: 1, value: 20 -->
-              <rect
-                x="90"
-                y="260"
-                width="40"
-                height="60"
-                class="bar"
-                aria-label="ID 0의 값: 20"
-              ></rect>
-
-              <!-- id: 2, value: 80 -->
-              <rect
-                x="170"
-                y="80"
-                width="40"
-                height="240"
-                class="bar"
-                aria-label="ID 0의 값: 80"
-              ></rect>
-
-              <!-- id: 3, value: 100 -->
-              <rect
-                x="250"
-                y="20"
-                width="40"
-                height="300"
-                class="bar"
-                aria-label="ID 0의 값: 100"
-              ></rect>
-
-              <!-- id: 4, value: 70 -->
-              <rect
-                x="330"
-                y="110"
-                width="40"
-                height="210"
-                class="bar"
-                aria-label="ID 0의 값: 70"
-              ></rect>
-            </g>
-          </svg>
         </section>
         <section class="edit-section" aria-label="데이터 테이블 섹션">
           <h2>2. 값 편집</h2>
@@ -208,6 +110,7 @@
     </div>
   </body>
   <script src="src/store/DataManager.js"></script>
+  <script src="src/component/Chart.js"></script>
   <script src="src/component/JsonEditor.js"></script>
   <script src="src/component/AddFrom.js"></script>
   <script src="src/component/TableEditor.js"></script>

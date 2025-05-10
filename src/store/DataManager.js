@@ -12,6 +12,7 @@ class DataManager {
   // 데이터 설정 (전체 교체)
   setData(newData) {
     this.data = newData;
+    this.isMoreData = this.batchSize < this.data.length;
     this.notifyListeners();
   }
 
